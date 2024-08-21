@@ -1,7 +1,7 @@
 const printInFrame = function(list) {
   list = list.split(' ');
   const longest = longestStr(list).length;
-  const border = repeat('*', longest);
+  const border = repeat('*', longest + 4); //add 4 to the longest string to account for the spaces and asterisks
 
   console.log(border);
   for (const word of list) {
@@ -11,7 +11,7 @@ const printInFrame = function(list) {
 };
 
 const repeat = function(str, times) {
-  let result = str;
+  let result = ''; //changed from let result = str; because it was repeating the first letter of the string
 
   for (let i = 0; i < times; i++) {
     result += str;
@@ -21,10 +21,12 @@ const repeat = function(str, times) {
 };
 
 const longestStr = function(list) {
-  let longest = list[0];
+  let longest = list[0]; //needed a default value to compare the strings to
 
   for (const str of list) {
-    longest = str;
+    if (str.length > longest.length) {  //add the if statement to check if the current string is longer than the longest string
+      longest = str;
+    }
   }
 
   return longest;
